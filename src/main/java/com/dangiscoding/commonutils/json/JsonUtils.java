@@ -31,6 +31,17 @@ public final class JsonUtils {
         }
     }
 
+    public static String toPrettyJson(Object object) {
+        try {
+            return jsonMapper
+                    .writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(object);
+        } catch (Exception e) {
+            String errorMsg = "JsonUtils.toPrettyJson Exception: " + e.getMessage();
+            throw new ObjectToJsonException(errorMsg, e);
+        }
+    }
+
     public static <T> T fromJson(String json, Class<T> clazz) {
         try {
             return jsonMapper.readValue(json, clazz);
