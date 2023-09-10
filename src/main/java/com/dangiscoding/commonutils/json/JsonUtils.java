@@ -22,31 +22,31 @@ public final class JsonUtils {
     private JsonUtils() {
     }
 
-    public static String toJson(Object object) {
+    public static String writeJson(Object object) {
         try {
             return jsonMapper.writeValueAsString(object);
         } catch (Exception e) {
-            String errorMsg = "JsonUtils.toJson Exception: " + e.getMessage();
+            String errorMsg = "JsonUtils.writeJson Exception: " + e.getMessage();
             throw new ObjectToJsonException(errorMsg, e);
         }
     }
 
-    public static String toPrettyJson(Object object) {
+    public static String writePrettyJson(Object object) {
         try {
             return jsonMapper
                     .writerWithDefaultPrettyPrinter()
                     .writeValueAsString(object);
         } catch (Exception e) {
-            String errorMsg = "JsonUtils.toPrettyJson Exception: " + e.getMessage();
+            String errorMsg = "JsonUtils.writePrettyJson Exception: " + e.getMessage();
             throw new ObjectToJsonException(errorMsg, e);
         }
     }
 
-    public static <T> T fromJson(String json, Class<T> clazz) {
+    public static <T> T readFromJson(String json, Class<T> clazz) {
         try {
             return jsonMapper.readValue(json, clazz);
         } catch (JsonProcessingException e) {
-            String errorMsg = "JsonUtils.fromJson Exception: " + e.getMessage();
+            String errorMsg = "JsonUtils.readFromJson Exception: " + e.getMessage();
             throw new ObjectFromJsonException(errorMsg, e);
         }
     }
