@@ -8,7 +8,7 @@ public final class DateUtils {
 
     }
 
-    public static String toString(Date date, String pattern) {
+    public static String writeDateAsString(Date date, String pattern) {
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         return sdf.format(date);
     }
