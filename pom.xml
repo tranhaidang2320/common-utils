@@ -16,6 +16,7 @@
         <jackson-databind.version>2.15.2</jackson-databind.version>
         <junit-bom.version>5.10.0</junit-bom.version>
         <lombok.version>1.18.28</lombok.version>
+        <ulid-creator.version>5.2.3</ulid-creator.version>
     </properties>
 
     <dependencyManagement>
@@ -31,6 +32,13 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/com.github.f4b6a3/ulid-creator -->
+        <dependency>
+            <groupId>com.github.f4b6a3</groupId>
+            <artifactId>ulid-creator</artifactId>
+            <version>${ulid-creator.version}</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
