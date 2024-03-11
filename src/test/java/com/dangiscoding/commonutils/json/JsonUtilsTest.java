@@ -2,10 +2,6 @@ package com.dangiscoding.commonutils.json;
 
 import com.dangiscoding.commonutils.json.exception.ObjectFromJsonException;
 import com.dangiscoding.commonutils.json.exception.ObjectToJsonException;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,11 +26,11 @@ class JsonUtilsTest {
     void givenSomeValidObject_whenWritePrettyJson_thenReturnJsonString() {
         TestObject testObject = new TestObject("dang", 27);
         String expectedJsonString = """
-                {\r
-                  "name" : "dang",\r
-                  "age" : 27\r
+                {
+                  "name" : "dang",
+                  "age" : 27
                 }""";
-        String actualJsonString = JsonUtils.writePrettyJson(testObject);
+        String actualJsonString = JsonUtils.writePrettyJson(testObject).replace("\r", "");
         assertEquals(expectedJsonString, actualJsonString);
     }
 
@@ -59,17 +55,16 @@ class JsonUtilsTest {
     }
 
 
-
-    @Data
-    @AllArgsConstructor
-    @NoArgsConstructor
-    private static class TestObject {
-        public String name;
-        public Integer age;
+    private record TestObject(String name, int age) {
     }
 
-    @RequiredArgsConstructor
+    @SuppressWarnings("all")
     private static class InvalidObject {
+        public InvalidObject(String name, Integer age) {
+            this.name = name;
+            this.age = age;
+        }
+
         private final String name;
         private final Integer age;
     }
